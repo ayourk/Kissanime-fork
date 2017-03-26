@@ -1,3 +1,9 @@
+[B]Version 0.9.23:[/B] - (03/26/2017)
+- fixes to adapt to kissanime website changes by dat1guy and prometeusx.
+- teh_tools.py: update brought to you by prometheusx who made use of decryption algorithm used in dat1guy's unofficial kissanime plugin
+- default.py :  dat1guy who came up with decryption algorithm for kissanime.ru embeded videos
+- gaining compiled fixes from both into this kissanime fork.
+
 [B]Version 0.9.21:[/B] - (1/8/2017)
 - teh_tools.py: gaining added support for Kodi 17 (krypton)
 

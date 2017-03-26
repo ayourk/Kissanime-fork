@@ -4,7 +4,7 @@
 ### # Author: 			#		The Highway
 ### # Version:			#		(ever changing)
 ### # Description: 	#		My Project Config File
-###	# Updated By:	#		Gaining	2016-2017 changed domain to kissanime.ru
+###	#	
 ### ############################################################################################################
 ### ############################################################################################################
 ### Imports ###
@@ -82,23 +82,23 @@ def ps(x):
 			,'__credits__': 				""
 			,'_addon_id': 					addon_id
 			,'_plugin_id': 					addon_id
-			,'_domain_url': 				"https://kissanime.ru"
+			,'_domain_url': 				"http://kissanime.ru"
 			,'_database_name': 			"kissanime"
 			,'common_word': 				"Anime"
 			,'common_word2': 				"Watch"
 			,'_addon_path_art': 		"art"
 			,'content_tvshows': 		"tvshows" #tvshows #movies
 			,'content_episodes': 		"episodes"
-			,'content_links': 			"list"
+			,'content_links': 			"files" #list
 			,'proxy1x': 						"http://69.197.132.80:3128"
 			,'proxy2x': 						"http://50.2.64.206:7808"
-			,'proxy': 							"http://104.25.46.113:7808"
+			,'proxy': 							"http://173.213.96.229:7808"
 			,'proxy_o1': 						"http://50.2.64.206:7808"
 			,'proxy_old': 					"http://192.69.200.37:7808"
 			,'proxy3': 							"http://198.27.97.214:7808"
 			,'proxy4': 							"http://72.29.101.11:7808"
 			,'proxy5': 							"http://198.56.208.37:8089"
-			,'proxy6': 							"http://104.25.46.113:80"
+			,'proxy6': 							"http://199.241.138.201:7808"
 			,'special.home.addons': 'special:'+os.sep+os.sep+'home'+os.sep+'addons'+os.sep
 			,'special.home': 				'special:'+os.sep+os.sep+'home'
 			,'img_kisslogo':				net.url_with_headers('http://kissanime.ru/Content/images/logo.png')

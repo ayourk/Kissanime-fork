@@ -4,7 +4,7 @@
 ### # Author: 			#		The Highway
 ### # Version:			#		(ever changing)
 ### # Description: 	#		My collection of common tools.
-###	# Updated By:	#		Gaining	2016-2017 changed domain to kissanime.ru	
+###	#	
 ### ############################################################################################################
 ### ############################################################################################################
 _testing=True; _testing=False
@@ -688,7 +688,7 @@ def set_view(content='none',view_mode=50,do_sort=False):
 	h=int(sys.argv[1])
 	#try:		h=int(sys.argv[1])
 	#except:	h=_addon.handle
-	#if (content is not 'none'): xbmcplugin.setContent(h, content)
+	if (content is not 'none'): xbmcplugin.setContent(h, content)
 	#types:									# set_view()
 	# 50		CommonRootView
 	# 51		FullWidthList
@@ -1851,7 +1851,8 @@ def GRABMETA_Y(name,types,year=None):
 
 #def qBaRt(url): nURL(url,headers={'Referer':metamind},proxy=ps('proxy'))
 def qBaRt(url): 
-	if 'kissanime.com/' in url: url=url.replace('kissanime.com/','kissanime.ru/')
+	if 'kissanime.com/' in url: url=url.replace('kissanime.com/','kissanime.to/')
+	if 'kissanime.to/' in url: url=url.replace('kissanime.to/','kissanime.ru/')
 	t=nURL(url)
 	debob(str(len(t))); 
 	if len(t) > 0: 
@@ -2248,7 +2249,8 @@ def ArtworkCaching(iUrl,iPath=addon_profile_path,iData=''):
 				_SaveFileB(iFilenameWP,html_)
 				return iFilenameWP
 			except: pass
-		if 'kissanime.com/' in iUrl2: iUrl2=iUrl2.replace('kissanime.com/','kissanime.ru/')
+		if 'kissanime.com/' in iUrl2: iUrl2=iUrl2.replace('kissanime.com/','kissanime.to/')
+		if 'kissanime.to/' in iUrl2: iUrl2=iUrl2.replace('kissanime.to/','kissanime.ru/')
 		iUrlWithHeaders=xbmc.translatePath(net.url_with_headers(iUrl2))
 		return iUrlWithHeaders
 		
@@ -2261,7 +2263,49 @@ def ArtworkCaching(iUrl,iPath=addon_profile_path,iData=''):
 
 ### ############################################################################################################
 
+def KEDecrypt(t,html):
+    #try:      	    
+        set_skH_dict = {}
+        for filename in ['vr.js', 'skH =']:
+            set_skH_dict[filename] = html.rfind(filename)
+        
+        sorted_skH = sorted(set_skH_dict, key=set_skH_dict.get, reverse=True)
+        last_set_skH_file = sorted_skH[0]
+        last_set_skH_line = set_skH_dict[last_set_skH_file]
 
+        #skH = self.__get_base_skH(last_set_skH_file)
+        if filename == 'vr.js': skH = 'nhasasdbasdtene7230asb'
+        elif filename == 'skH =':
+            # We need to find the last skH before ovelwrap
+            split1 = html.split("ovelWrap($('#slcQualix').val())")[0]
+            split2 = split1.split('skH =')[-2]
+            obfuscated_list_str = '[' + split2.split('[')[-1].strip('; ')
+            import ast
+            obfuscated_list = ast.literal_eval(obfuscated_list_str)
+            skH = obfuscated_list[0]
+
+        # Find modifications after the last line that sets skH
+        js_dict = {}
+        for f in ['shal.js', 'moon.js', 'file3.js']:
+            line_num = html.find(f)
+            if line_num > last_set_skH_line:
+                js_dict[f] = html.find(f)
+
+        # Sort and then apply modifications in order of appearance
+        for filename in sorted(js_dict, key=js_dict.get, reverse=False):
+			#skH = self.__update_skH(skH, filename)
+            if filename == 'shal.js': skH = skH + '6n23ncasdln213'
+            elif filename == 'moon.js': skH = skH + 'znsdbasd012933473'
+            elif filename == 'file3.js': skH = skH.replace('a', 'c')
+
+        import hashlib
+        #r = hashlib.sha256(skH).hexdigest()
+        #xbmcgui.Dialog().ok('Warning',str(skH))
+        import resources.lib.kissenc as kissenc
+        KissDecrypt=kissenc.KissDecrypt()
+        #r=0
+        return KissDecrypt.decrypt(t,'anime',skH) 
+    #except: return t
 
 
 
